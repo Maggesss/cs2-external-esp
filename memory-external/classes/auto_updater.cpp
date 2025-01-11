@@ -232,7 +232,7 @@ namespace updater {
 			offsets::m_iHealth = data["m_iHealth"];
 		if (data["m_hPlayerPawn"].is_number())
 			offsets::m_hPlayerPawn = data["m_hPlayerPawn"];
-		if (data["dwSanitizedName"].is_number())
+		if (data["m_sSanitizedPlayerName"].is_number())
 			offsets::m_sSanitizedPlayerName = data["m_sSanitizedPlayerName"];
 		if (data["m_iTeamNum"].is_number())
 			offsets::m_iTeamNum = data["m_iTeamNum"];
