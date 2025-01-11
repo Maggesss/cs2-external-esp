@@ -151,13 +151,13 @@ void CGame::loop() {
 		if (player.origin.x == 0 && player.origin.y == 0) continue;
 
 		if (config::show_skeleton_esp) {
-			player.gameSceneNode = process->read<uint64_t>(player.pCSPlayerPawn + 0x328);
+			player.gameSceneNode = process->read<uint64_t>(player.pCSPlayerPawn + 0x328);			//! changed from 0x308 to 0x328, will add in offsets file if changes frequently
 			player.boneArray = process->read<uint64_t>(player.gameSceneNode + 0x170 + 0x80);
 			player.ReadBones();
 		}
 
 		if (config::show_head_tracker && !config::show_skeleton_esp) {
-			player.gameSceneNode = process->read<uint64_t>(player.pCSPlayerPawn + 0x328);
+			player.gameSceneNode = process->read<uint64_t>(player.pCSPlayerPawn + 0x328);			//! changed from 0x308 to 0x328, will add in offsets file if changes frequently
 			player.boneArray = process->read<uint64_t>(player.gameSceneNode + 0x170 + 0x80);
 			player.ReadHead();
 		}
@@ -175,8 +175,8 @@ void CGame::loop() {
 			player.flashAlpha = process->read<float>(player.pCSPlayerPawn + updater::offsets::m_flFlashOverlayAlpha);
 
 			clippingWeapon = process->read<std::uint64_t>(player.pCSPlayerPawn + updater::offsets::m_pClippingWeapon);
-			weaponData = process->read<std::uint64_t>(clippingWeapon + 0x380);
-			weaponData = process->read<std::uint64_t>(weaponData + updater::offsets::m_szName);
+			weaponData = process->read<std::uint64_t>(clippingWeapon + 0x380);						//! changed from 0x360 to 0x380, will add in offsets file if changes frequently
+			weaponData = process->read<std::uint64_t>(weaponData + updater::offsets::m_szName);		//! changed to 0x18, value of m_szNamefrom from a2x's dumper wasn't right here, will keep an eye on this
 			char buffer[MAX_PATH];
 			process->read_raw(weaponData, buffer, sizeof(buffer));
 			std::string weaponName = std::string(buffer);
